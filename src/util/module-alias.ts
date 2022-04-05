@@ -7,4 +7,3 @@ moduleAlias.addAliases({
     '@src': path.join(files, 'src'),
     '@test': path.join(files, 'test'),
 });
-
