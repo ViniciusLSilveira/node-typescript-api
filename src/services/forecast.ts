@@ -1,22 +1,6 @@
 import { ForecastPoint, StormGlass } from '@src/clients/stormGlass';
+import { Beach } from '@src/models/Beach';
 import { InternalError } from '@src/util/errors/internalErrors';
-import { time } from 'console';
-
-export enum BeachPosition {
-    S = 'S',
-    E = 'E',
-    W = 'W',
-    N = 'N',
-}
-
-export interface Beach {
-    lat: number;
-    lng: number;
-    name: string;
-    position: BeachPosition;
-    user: string;
-}
-
 export interface TimeForecast {
     time: string;
     forecast: BeachForecast[];
