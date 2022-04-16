@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "start": "yarn build && node dist/src/index.js",
+        "start": "node dist/src/index.js",
         "start:dev": "ts-node-dev --transpile-only src/index.ts",
         "test": "yarn test:unit && yarn test:functional",
         "test:functional": "jest --projects ./test --forceExit --runInBand",
@@ -15,11 +15,16 @@
         "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
         "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
     },
+    "engines": {
+        "node": ">=14"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ViniciusLSilveira/node-typescript-api.git"
     },
     "keywords": [
+        "node",
+        "nodejs",
         "node.js",
         "typescript",
         "api"
@@ -39,7 +44,7 @@
         "express": "^4.17.3",
         "jsonwebtoken": "^8.5.1",
         "module-alias": "^2.2.2",
-        "mongoose": "^6.2.10"
+        "mongoose": "^6.3.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.0",
@@ -48,10 +53,10 @@
         "@types/jest": "^27.4.1",
         "@types/jsonwebtoken": "^8.5.8",
         "@types/module-alias": "^2.0.1",
-        "@types/node": "^17.0.23",
+        "@types/node": "^17.0.24",
         "@types/supertest": "^2.0.12",
-        "@typescript-eslint/eslint-plugin": "^5.18.0",
-        "@typescript-eslint/parser": "^5.18.0",
+        "@typescript-eslint/eslint-plugin": "^5.19.0",
+        "@typescript-eslint/parser": "^5.19.0",
         "eslint": "^8.13.0",
         "jest": "^27.5.1",
         "nock": "^13.2.4",
