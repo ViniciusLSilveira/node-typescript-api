@@ -10,11 +10,11 @@ export function authMiddleware(
         const token = req.headers?.['x-access-token'];
         const decoded = AuthService.decodeToken(token as string);
         req.decoded = decoded;
+        next();
     } catch (error: any) {
         res.status?.(401).send({
             code: 401,
             error: error.message,
         });
     }
-    next();
 }
