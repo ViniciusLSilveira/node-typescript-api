@@ -1,3 +1,4 @@
+import logger from '@src/logger';
 import AuthService from '@src/services/auth';
 import mongoose, { Document, Model, model, Schema } from 'mongoose';
 
@@ -51,13 +52,17 @@ user.path('email').validate(
 );
 
 user.pre<UserModel>('save', async function (): Promise<void> {
-    if (!this.password || !this.isModified('password')) return;
+    if (!this.password || !this.isModified('password')) {
+        return;
+    }
 
     try {
         const hashedPassword = await AuthService.hashPassword(this.password);
         this.password = hashedPassword;
     } catch (error) {
-        console.error(`Error hashing the password for the user ${this.name}`);
+        logger.error(
+            `Error hashing the password for the user ${this.name} | ${error}`
+        );
     }
 });
 

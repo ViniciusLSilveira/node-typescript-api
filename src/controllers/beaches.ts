@@ -1,4 +1,5 @@
 import { ClassMiddleware, Controller, Post } from '@overnightjs/core';
+import logger from '@src/logger';
 import { authMiddleware } from '@src/middlewares/auth';
 import { Beach } from '@src/models/Beach';
 import { Request, Response } from 'express';
