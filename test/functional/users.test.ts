@@ -114,4 +114,40 @@ describe('Users functional tests', () => {
             expect(response.status).toBe(401);
         });
     });
+
+    describe('When getting user profile info', () => {
+        it(`should return the token's owner profile information`, async () => {
+            const newUser = {
+                name: 'John Doe',
+                email: 'john@mail.com',
+                password: '123456',
+            };
+            const user = await new User(newUser).save();
+            const token = AuthService.generateToken(user.toJSON());
+
+            const { body, status } = await global.testRequest
+                .get('/users/me')
+                .set({ 'x-access-token': token });
+
+            expect(status).toBe(200);
+            expect(body).toMatchObject(JSON.parse(JSON.stringify({ user })));
+        });
+
+        it('should return Not Found, when the user is not found', async () => {
+            const newUser = {
+                name: 'John Doe',
+                email: 'john@mail.com',
+                password: '123456',
+            };
+            const user = new User(newUser);
+            const token = AuthService.generateToken(user.toJSON());
+
+            const { body, status } = await global.testRequest
+                .get('/users/me')
+                .set({ 'x-access-token': token });
+
+            expect(status).toBe(404);
+            expect(body.message).toBe('User not found!');
+        });
+    });
 });
