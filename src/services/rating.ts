@@ -17,7 +17,7 @@ const waveHeights = {
     },
 };
 
-export class rating {
+export class Rating {
     constructor(private beach: Beach) {}
 
     public getRateForPoint(point: ForecastPoint): number {

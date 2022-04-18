@@ -1,5 +1,5 @@
 import { Beach, GeoPosition } from '@src/models/Beach';
-import { rating } from '../rating';
+import { Rating } from '../rating';
 
 describe('Rating Service', () => {
     const defaultBeach: Beach = {
@@ -10,7 +10,7 @@ describe('Rating Service', () => {
         user: 'some-user',
     };
 
-    const defaultRating = new rating(defaultBeach);
+    const defaultRating = new Rating(defaultBeach);
 
     describe('Calculate rating for a giving point', () => {
         const defaultPoint = {
