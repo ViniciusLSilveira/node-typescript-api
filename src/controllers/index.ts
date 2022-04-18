@@ -36,7 +36,7 @@ export abstract class BaseController {
         if (duplicatedKindError.length > 0) {
             return { code: 409, errorString: error.message };
         } else {
-            return { code: 422, errorString: error.message };
+            return { code: 400, errorString: error.message };
         }
     }
 }
