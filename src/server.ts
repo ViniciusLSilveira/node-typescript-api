@@ -13,6 +13,7 @@ import logger from './logger';
 import apiSchema from './api.schema.json';
 import * as OpenApiValidator from 'express-openapi-validator';
 import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
+import { apiErrorValidator } from './middlewares/api-error-validator';
 
 export class SetupServer extends Server {
     constructor(private port = 3333) {
@@ -24,6 +25,7 @@ export class SetupServer extends Server {
         await this.docsSetup();
         this.setupControllers();
         await this.databaseSetup();
+        this.setupErrorHandlers();
     }
 
     public async close(): Promise<void> {
@@ -59,8 +61,8 @@ export class SetupServer extends Server {
         this.app.use(
             OpenApiValidator.middleware({
                 apiSpec: apiSchema as OpenAPIV3.Document,
-                validateRequests: false,
-                validateResponses: false,
+                validateRequests: true,
+                validateResponses: true,
             })
         );
     }
@@ -78,5 +80,9 @@ export class SetupServer extends Server {
 
     private async databaseSetup(): Promise<void> {
         await database.connect();
+    }
+
+    private setupErrorHandlers(): void {
+        this.app.use(apiErrorValidator);
     }
 }
