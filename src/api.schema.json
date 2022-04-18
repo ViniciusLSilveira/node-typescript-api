@@ -244,6 +244,16 @@
                                 }
                             }
                         }
+                    },
+                    "429": {
+                        "description": "Too many request to the /forecast endpoint",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
                     }
                 }
             }
