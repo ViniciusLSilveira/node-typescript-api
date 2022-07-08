@@ -1,6 +1,7 @@
-const { resolve } = require('path');
+import { resolve } from 'path';
 const root = resolve(__dirname);
-module.exports = {
+
+export default {
     rootDir: root,
     displayName: 'root-tests',
     testMatch: ['<rootDir>/src/**/*.test.ts'],
